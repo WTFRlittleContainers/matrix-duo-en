@@ -250,6 +250,8 @@ Alles auf dem Bildschirm grösser oder kleiner — gilt sofort	Everything on scr
 Angeschlossen	Connected
 Anzeige	Display
 Anzeigegrösse	Display size
+Anzeigegröße	Display size
+Anzeigegröße gespeichert ✓	Display size saved ✓
 Anzeigegrösse «{}» ✓	Display size «{}» ✓
 App-Icons	App icons
 Apps ohne Symbol im Thema behalten ihr Matrix-Icon	Apps without an icon in the theme keep their Matrix icon
@@ -480,6 +482,8 @@ Testton	Test tone
 Testton links …	Test tone left …
 Testton rechts …	Test tone right …
 Textgrösse	Text size
+Textgröße	Text size
+Textgröße gespeichert ✓	Text size saved ✓
 Textgrösse gespeichert ✓ — gilt für neu gestartete Apps	Text size saved ✓ — applies to newly started apps
 Tiefschlaf	Deep sleep
 Tiefschlaf an ✓	Deep sleep on ✓
