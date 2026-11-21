@@ -10,6 +10,12 @@ T0=$(date +%s)
 # The same exclusions as repack-rootfs.sh (toolchains, build folders, caches).
 EX=$(grep -o -- "--exclude=[^ ]*" /home/user/duo-a1/repack-rootfs.sh | tr '\n' ' ')
 cut -f1 "$H/firmware-quellen.tsv" > "$O/firmware-geraet.txt"
+# The English catalogue is data the image must carry (branch en/branch-a).
+# Until now it was copied into the rootfs by hand on the build host, so a
+# rebuild from these scripts silently shipped a German-only system. Stop the
+# build instead of shipping it missing.
+[ -f "$H/sprache/en.tsv" ] || { echo "werksabbild: sprache/en.tsv fehlt" >&2; exit 1; }
+install -Dm644 "$H/sprache/en.tsv" "$R/usr/share/matrix/sprache/en.tsv"
 rm -f "$O/matrix-werk.sqfs.neu"
 eval tar -C "$R" $EX -cf - . | python3 "$H/werksabbild.py" "$O/firmware-geraet.txt" "$O/bericht.tsv" \
   | sqfstar -comp xz -b 1M -Xdict-size 1M -quiet -no-progress "$O/matrix-werk.sqfs.neu"
