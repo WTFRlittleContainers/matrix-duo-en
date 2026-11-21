@@ -816,6 +816,7 @@ Matrix Tastatur	Matrix Keyboard
 Matrix Sperre	Matrix Lock
 Matrix Leiste	Matrix Bar
 Matrix Wächter	Matrix Watchdog
+Orakel	Oracle
 Duo Diagnose	Duo Diagnostics
 Vorlesen	Read aloud
 Pokémon Smaragd	Pokémon Emerald
@@ -839,6 +840,7 @@ Matrix Datenträger	Matrix Disks
 Matrix Farben	Matrix Colours
 Matrix Kacheln	Matrix Tiles
 Matrix Leinwand	Matrix Canvas
+Matrix Orakel	Matrix Oracle
 Matrix Schlüssel	Matrix Keys
 Matrix Werft	Matrix Shipyard
 Matrix Wiederherstellung	Matrix Recovery
