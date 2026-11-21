@@ -1,0 +1,23 @@
+# Morpheus / Matrix for the Surface Duo (1st gen).
+# Recovered verbatim from Morpheus.AppImage -> x86_64/usr/bin/matrix-morpheus-duo
+# (this is what its «Allow access» button tries to write via pkexec).
+#
+# Morpheus cannot install these itself on NixOS: it runs
+#   pkexec sh -c 'cat > /etc/udev/rules.d/51-morpheus-duo.rules; ...'
+# and /etc/udev/rules.d is a read-only symlink to /etc/static/udev/rules.d.
+# Wire them in declaratively instead:
+#
+#   services.udev.extraRules = builtins.readFile ./51-morpheus-duo.rules;
+#
+# Note on NixOS >= 25.11 / nixpkgs 26.05:
+#   The first two rules are already redundant — systemd's built-in
+#   /lib/udev/rules.d/70-uaccess.rules tags ADB/Fastboot interfaces
+#   (*:ff4201:* / *:ff4203:* / *:dc0201:*) with uaccess. That is also why
+#   pkgs.android-udev-rules was dropped from nixpkgs
+#   ("superseded by built-in systemd uaccess rules").
+#   Keep the whole file anyway if Morpheus still reports «No access»: the
+#   last rule covers the Duo's own 045e:0c26/0c29/0c2f nodes, which systemd
+#   does not know about.
+SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ENV{ID_USB_INTERFACES}=="*:ff4201:*", TAG+="uaccess"
+SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ENV{ID_USB_INTERFACES}=="*:ff4203:*", TAG+="uaccess"
+SUBSYSTEM=="usb", ATTR{idVendor}=="045e", ATTR{idProduct}=="0c26|0c29|0c2f", MODE="0666", TAG+="uaccess"
